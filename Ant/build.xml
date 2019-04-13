@@ -2,16 +2,11 @@
 <project name="SimpleAutomaticBuildProject">
   
   <!--Properties-->
-	<!--Ant directories(default)-->
-	<property name="r.dir"         	value="."/>
-    <property name="src.dir"       	value="${r.dir}/src"/>
-    <property name="lib.dir"       	value="${r.dir}/lib"/>
-    <property name="dist.dir"      	value="${r.dir}/dist"/>
-	<property name="build-ant.dir" 	value="${r.dir}/build-ant"/>
-	<!--jar target properties-->
-	<property name="package.name"   value="at.fhj.iit"/>
 	<property name="project.name"	value="${ant.project.name}"/>
 	<property name="jar-name"		value="${project.name}.jar"/>
+
+  <!--Properties with Information depending on the project-->
+	<property file="build.properties.template"/>
 	
 
   <!-- Initialize the Ant directories, for the use later-->
@@ -61,6 +56,16 @@
 		<copy todir="${dist.dir}">
 			<file name="${lib.dir}/${jar-name}"/>
 		</copy>
+  </target>
+  
+  <!-- Runs the JAR-File with the argument(our names) -->
+  <target name="run"
+			description="runs the jar-file with an argument">
+		<echo   message="Attempting to run ${project.name}"/>
+		<java jar="${dist.dir}/${jar-name}"
+			fork="true">
+				<arg value="${ourNames.arg}"/>
+		</java>
   </target>
 
 </project>

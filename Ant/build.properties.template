@@ -1,0 +1,9 @@
+package.name		= at.fhj.iit
+ourNames.arg		= Florian Reisinger und Thomas Pretterhofer
+main-class			= Main.class
+
+r.dir				= .
+src.dir				= ${r.dir}/src
+lib.dir				= ${r.dir}/lib
+dist.dir			= ${r.dir}/dist
+build-ant.dir		= ${r.dir}/build-ant
