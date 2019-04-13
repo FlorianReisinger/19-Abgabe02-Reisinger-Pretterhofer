@@ -20,13 +20,18 @@
  <!-- Cleaning the Ant directories, which were created by "init" -->
   <target name="clean"
 			description="Removing directories and file, which were created by init
-							but not the src directory">
+				but not the src directory">
 	<delete dir="${lib.dir}"/>
 	<delete dir="${dist.dir}"/>
     <delete dir="${build-ant.dir}"/>
   </target>
  
- 
- 
-  
+ <!-- Compiles the java source files and store them into the fixed directory -->
+  <target name="compile"
+			depends="init"
+			description="Compiles the source java files and store them into the 
+				destination directoriy, which was defined by the properties">
+	<javac srcdir="src" destdir="build-ant" includeantruntime="false"/>
+  </target>
+
 </project>
