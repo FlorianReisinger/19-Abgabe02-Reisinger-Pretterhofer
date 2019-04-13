@@ -53,5 +53,14 @@
 			</manifest>
 	</jar>
   </target>
+  
+  <!-- Copies the jar-files to the directory which was defined in the properties. -->
+  <target name="install"
+			depends="jar"
+			description="Copies the jar-files to the destination directory">
+		<copy todir="${dist.dir}">
+			<file name="${lib.dir}/${jar-name}"/>
+		</copy>
+  </target>
 
 </project>
