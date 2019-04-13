@@ -15,6 +15,18 @@
 	<mkdir dir="${dist.dir}"/>
 	<mkdir dir="${src.dir}"/>
     <mkdir dir="${build-ant.dir}"/>
-  </target>  
+  </target>
+ 
+ <!-- Cleaning the Ant directories, which were created by "init" -->
+  <target name="clean"
+			description="Removing directories and file, which were created by init
+							but not the src directory">
+	<delete dir="${lib.dir}"/>
+	<delete dir="${dist.dir}"/>
+    <delete dir="${build-ant.dir}"/>
+  </target>
+ 
+ 
+ 
   
 </project>
