@@ -2,11 +2,17 @@
 <project name="SimpleAutomaticBuildProject">
   
   <!--Properties-->
-	<property name="r.dir"         value="."/>
-    <property name="src.dir"       value="${r.dir}/src"/>
-    <property name="lib.dir"       value="${r.dir}/lib"/>
-    <property name="dist.dir"      value="${r.dir}/dist"/>
-	<property name="build-ant.dir" value="${r.dir}/build-ant"/>
+	<!--Ant directories(default)-->
+	<property name="r.dir"         	value="."/>
+    <property name="src.dir"       	value="${r.dir}/src"/>
+    <property name="lib.dir"       	value="${r.dir}/lib"/>
+    <property name="dist.dir"      	value="${r.dir}/dist"/>
+	<property name="build-ant.dir" 	value="${r.dir}/build-ant"/>
+	<!--jar target properties-->
+	<property name="package.name"   value="at.fhj.iit"/>
+	<property name="project.name"	value="${ant.project.name}"/>
+	<property name="jar-name"		value="${project.name}.jar"/>
+	
 
   <!-- Initialize the Ant directories, for the use later-->
   <target name="init"
@@ -31,7 +37,21 @@
 			depends="init"
 			description="Compiles the source java files and store them into the 
 				destination directoriy, which was defined by the properties">
-	<javac srcdir="src" destdir="build-ant" includeantruntime="false"/>
+	<javac srcdir="src" destdir="${build-ant.dir}" includeantruntime="false"/>
+  </target>
+  
+  <!-- Creates a Java Archive("*.jar") of all class files, which were located in the "build-ant" directory -->
+  <target name="jar"
+			depends="compile"
+			description="Creates a Java Archive(*.jar) of all class files, 
+			which were located in the build-ant directory. This *.jar file is executable">
+			
+	<jar destfile="${lib.dir}/${jar-name}"
+         basedir="${build-ant.dir}">
+			<manifest>
+				<attribute name="Main-Class"	value="${package.name}.Main"/>
+			</manifest>
+	</jar>
   </target>
 
 </project>
